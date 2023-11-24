@@ -1,0 +1,15 @@
+services:
+  backend-db:
+    container_name: backend-db
+    image: postgres:15
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - bank-backend-volume:/var/lib/postgresql/data
+    ports:
+      - ${DB_OUT_PORT}:${DB_IN_PORT}
+
+volumes:
+  bank-backend-volume:
