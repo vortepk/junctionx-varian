@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}Radiancex{% endblock %}</title>
+{% block static %}
+<!-- Static load -->
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900'>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <!--link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">-->
+{% endblock %}
+</head>
+<body class="body">
+<header class="header">
+  <!--{% block nav %}
+    {% include 'nav.html' %}
+  {% endblock nav %}
+  -->
+</header>
+{% block content %}
+<!-- The main content of the page -->
+{% endblock %}
+<!-- {% include 'footer.html' %} -->
+{% block js %}
+<!-- Load js -->
+{% endblock %}
+</body>
+</html>
