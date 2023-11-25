@@ -12,14 +12,14 @@ services:
       - ${DB_OUT_PORT}:${DB_IN_PORT}
 
   radiancex-gui:
-     build: .
-     command: python manage.py runserver 0.0.0.0:${GUI_PORT}
-     volumes:
-       - .:/app
-     ports:
-       - ${GUI_PORT}:${GUI_PORT}
-     depends_on:
-       - backend-db
+    build: .
+    ports:
+      - ${GUI_PORT}:${GUI_PORT}
+    entrypoint: [ "sh", "-c", "gunicorn sedna.asgi:application -k uvicorn.workers.UvicornWorker --access-logfile '-' --error-logfile '-' --capture-output --reload --bind 0.0.0.0:${GUI_PORT}"]
+    volumes:
+      - ./:/app
+    depends_on:
+      - backend-db
 
 volumes:
   bank-backend-volume:
