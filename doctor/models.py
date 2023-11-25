@@ -7,6 +7,7 @@ class Patient(models.Model):
     sex = models.CharField(max_length=1024, blank=True, null=True)
     weight = models.IntegerField(blank=True, null=True)
     email = models.CharField(max_length=1024, blank=True, null=True)
+    treatment_regions = models.JSONField(blank=True, null=True)
     fractions_number = models.IntegerField(blank=True, null=True)
     priority = models.BooleanField(max_length=1024, blank=True, null=True)
     large_bodied = models.BooleanField(default=False)
@@ -14,8 +15,18 @@ class Patient(models.Model):
     inpatient = models.BooleanField(default=False)
 
 
+class TreatmentRegion(models.Model):
+    name = models.CharField(max_length=1024, blank=True, null=True)
+
+
+class MachineType(models.Model):
+    name = models.CharField(max_length=1024, blank=True, null=True)
+    regions_supported = models.ManyToManyField(TreatmentRegion)
+
+
 class Machine(models.Model):
     name = models.CharField(max_length=1024, blank=True, null=True)
+    machine_type = models.ForeignKey(MachineType, on_delete=models.DO_NOTHING, blank=True, null=True)
     in_service = models.BooleanField(default=True)
 
 
@@ -23,8 +34,8 @@ class Timeslot(models.Model):
     start_date = models.DateTimeField(blank=True, null=True)
     end_date = models.DateTimeField(blank=True, null=True)
     duration = models.DurationField(blank=True, null=True)
-    patient = models.ForeignKey(Patient, on_delete=models.DO_NOTHING)
-    machine = models.ForeignKey(Machine, on_delete=models.DO_NOTHING)
+    patient = models.ForeignKey(Patient, on_delete=models.DO_NOTHING, blank=True, null=True)
+    machine = models.ForeignKey(Machine, on_delete=models.DO_NOTHING, blank=True, null=True)
 
 
 class Floor(models.Model):
