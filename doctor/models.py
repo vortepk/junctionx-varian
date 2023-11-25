@@ -8,7 +8,7 @@ class Patient(models.Model):
     weight = models.IntegerField(blank=True, null=True)
     email = models.CharField(max_length=1024, blank=True, null=True)
     fractions_number = models.IntegerField(blank=True, null=True)
-    priority = models.CharField(max_length=1024, blank=True, null=True)
+    priority = models.BooleanField(max_length=1024, blank=True, null=True)
     large_bodied = models.BooleanField(default=False)
     breath_holding = models.BooleanField(default=False)
     inpatient = models.BooleanField(default=False)
